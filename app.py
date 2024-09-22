@@ -51,7 +51,7 @@ def send_message_to_chatwoot(conversation_id, bot_response):
     }
 
     # Send the bot's response back to the user in Chatwoot
-    chatwoot_reply_url = f'https://chatwoot-instance.com/api/v1/conversations/{conversation_id}/messages'
+    chatwoot_reply_url = f'https://app.chatwoot.com/api/v1/conversations/{conversation_id}/messages'
     requests.post(chatwoot_reply_url, json=payload, headers=headers)
 
 
