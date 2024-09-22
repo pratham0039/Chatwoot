@@ -56,7 +56,15 @@ def send_message_to_chatwoot(conversation_id, bot_response):
 
     # Send the bot's response back to the user in Chatwoot
     chatwoot_reply_url = f'https://app.chatwoot.com/api/v1/conversations/{conversation_id}/messages'
-    requests.post(chatwoot_reply_url, json=payload, headers=headers)
+    response = requests.post(chatwoot_reply_url, json=payload, headers=headers)
+        
+    
+
+    # Check for response errors
+    if response.status_code != 200:
+        print(f"Error sending message to Chatwoot: {response.status_code}, {response.text}")
+    else:
+        print("Message sent to Chatwoot successfully")
 
 
 if __name__ == '__main__':
