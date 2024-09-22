@@ -19,7 +19,7 @@ def handle_webhook():
     user_message = data['content'] 
     print(user_message)# User's message from Chatwoot
     conversation_id = data['conversation']['id']
-    print(pratham)
+    print('pratham')
     print(conversation_id)
 
     # Send the bot's response back to Chatwoot
