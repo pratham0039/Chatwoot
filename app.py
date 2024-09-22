@@ -8,7 +8,7 @@ app = Flask(__name__)
 openai.api_key = 'your-openai-api-key'
 
 # Chatwoot API Key
-chatwoot_api_key = 'your-chatwoot-api-key'
+chatwoot_api_key = 'CHHUUQQ4smRuYm6BvQuAnDt1'
 
 
 @app.route('/chatwoot-webhook', methods=['POST'])
