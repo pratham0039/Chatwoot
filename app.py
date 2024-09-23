@@ -27,7 +27,7 @@ def handle_webhook():
     bot_response = "Lxme trading is a trading platfrom which have multiple things for a women. They can use it any way they want to."
     
     # Send the fixed bot response back to Chatwoot
-    send_message_to_chatwoot(account, conversation_id, bot_response)
+    chatwoot_msg = send_message_to_chatwoot(account, conversation_id, bot_response)
 
     return chatwoot_msg
 
