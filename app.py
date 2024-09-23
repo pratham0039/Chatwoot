@@ -29,7 +29,7 @@ def handle_webhook():
     # Send the fixed bot response back to Chatwoot
     send_message_to_chatwoot(account, conversation_id, bot_response)
 
-    return {"status": "success", "content": bot_response}, 200
+    return chatwoot_msg
 
 
 
@@ -65,6 +65,7 @@ def send_message_to_chatwoot(account, conversation, bot_response):
         print(f"Error sending message to Chatwoot: {response.status_code}, {response.text}")
     else:
         print("Message sent to Chatwoot successfully")
+    return r.json()
 
 
 if __name__ == '__main__':
