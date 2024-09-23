@@ -90,7 +90,7 @@ def send_message_to_chatwoot(account, conversation, bot_response):
     
 
     # Check for response errors
-    if response.status_code != 200:
+    if r.status_code != 200:
         print(f"Error sending message to Chatwoot: {response.status_code}, {response.text}")
     else:
         print("Message sent to Chatwoot successfully")
