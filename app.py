@@ -20,6 +20,8 @@ def handle_webhook():
     conversation_id = data['conversation']['id']
     contact = data['sender']['id']
     account = data['account']['id']
+    print(account)
+    print('ptatham')
 
     # Instead of calling OpenAI, return a fixed response
     bot_response = "Lxme trading is a trading platfrom which have multiple things for a women. They can use it any way they want to."
@@ -45,6 +47,9 @@ def send_message_to_chatwoot(account, conversation, bot_response):
     data = {
         'content': bot_response
     }
+
+    print(data)
+    print('it came here')
     url = f"{chatwoot_url}/api/v1/accounts/{account}/conversations/{conversation}/messages"
     headers = {"Content-Type": "application/json",
                "Accept": "application/json",
