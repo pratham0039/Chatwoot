@@ -9,7 +9,7 @@ openai.api_key = 'your-openai-api-key'
 
 # Chatwoot API Key
 chatwoot_api_key = 'CHHUUQQ4smRuYm6BvQuAnDt1'
-chatwoot_url = "app.chatwoot.com"
+chatwoot_url = "https://app.chatwoot.com"
 chatwoot_bot_token = "CHHUUQQ4smRuYm6BvQuAnDt1"
 
 @app.route('/chatwoot-webhook', methods=['POST'])
