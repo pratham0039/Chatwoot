@@ -20,14 +20,16 @@ def handle_webhook():
     conversation_id = data['conversation']['id']
     contact = data['sender']['id']
     account = data['account']['id']
+    message_type = data['message_type']
     print(account)
     print('ptatham')
 
     # Instead of calling OpenAI, return a fixed response
     bot_response = "Lxme trading is a trading platfrom which have multiple things for a women. They can use it any way they want to."
-    
+    chatwoot_msg = 'None'
     # Send the fixed bot response back to Chatwoot
-    chatwoot_msg = send_message_to_chatwoot(account, conversation_id, bot_response)
+    if message_type == 'incoming':
+        chatwoot_msg = send_message_to_chatwoot(account, conversation_id, bot_response)
 
     return chatwoot_msg
 
