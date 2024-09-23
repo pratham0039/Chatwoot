@@ -48,7 +48,7 @@ def get_openai_response(user_message):
     )
     return response.choices[0].text.strip()
 
-def send_message_to_user(account, conversation, bot_response):
+def send_message_to_team(account, conversation, bot_response):
     data = {
         'team_id': 6075
     }
