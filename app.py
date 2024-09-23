@@ -29,7 +29,11 @@ def handle_webhook():
     chatwoot_msg = 'None'
     # Send the fixed bot response back to Chatwoot
     if message_type == 'incoming':
-        chatwoot_msg = send_message_to_chatwoot(account, conversation_id, bot_response)
+        if user_message == "talk":
+            print('talk')
+            chatwoot_msg = send_message_to_team(account, conversation_id, bot_response)
+        else:
+            chatwoot_msg = send_message_to_chatwoot(account, conversation_id, bot_response)
 
     return chatwoot_msg
 
@@ -44,6 +48,29 @@ def get_openai_response(user_message):
     )
     return response.choices[0].text.strip()
 
+def send_message_to_user(account, conversation, bot_response):
+    data = {
+        'team_id': 6075
+    }
+
+    print(data)
+    print('it came here')
+    url = f"{chatwoot_url}/api/v1/accounts/{account}/conversations/{conversation}/assignments"
+    headers = {"Content-Type": "application/json",
+               "Accept": "application/json",
+               "api_access_token": f"{chatwoot_bot_token}"}
+
+    r = requests.post(url,
+                      json=data, headers=headers)
+        
+    
+
+    # Check for response errors
+    if response.status_code != 200:
+        print(f"Error sending message to Chatwoot: {response.status_code}, {response.text}")
+    else:
+        print("Message sent to Chatwoot successfully")
+    return r.json()
 
 def send_message_to_chatwoot(account, conversation, bot_response):
     data = {
