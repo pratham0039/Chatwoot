@@ -9,7 +9,8 @@ openai.api_key = 'your-openai-api-key'
 
 # Chatwoot API Key
 chatwoot_api_key = 'CHHUUQQ4smRuYm6BvQuAnDt1'
-
+chatwoot_url = "app.chatwoot.com"
+chatwoot_bot_token = "CHHUUQQ4smRuYm6BvQuAnDt1"
 
 @app.route('/chatwoot-webhook', methods=['POST'])
 def handle_webhook():
@@ -17,12 +18,14 @@ def handle_webhook():
     data = request.json
     user_message = data['content']  # User's message from Chatwoot
     conversation_id = data['conversation']['id']
+    contact = data['sender']['id']
+    account = data['account']['id']
 
     # Instead of calling OpenAI, return a fixed response
     bot_response = "Lxme trading is a trading platfrom which have multiple things for a women. They can use it any way they want to."
     
     # Send the fixed bot response back to Chatwoot
-    send_message_to_chatwoot(conversation_id, bot_response)
+    send_message_to_chatwoot(account, conversation_id, bot_response)
 
     return {"status": "success", "content": bot_response}, 200
 
@@ -38,22 +41,17 @@ def get_openai_response(user_message):
     return response.choices[0].text.strip()
 
 
-def send_message_to_chatwoot(conversation_id, bot_response):
-    # Prepare headers for Chatwoot API call
-    headers = {
-        'Authorization': f'Bearer {chatwoot_api_key}',
-        'Content-Type': 'application/json'
+def send_message_to_chatwoot(account, conversation, bot_response):
+    data = {
+        'content': bot_response
     }
+    url = f"{chatwoot_url}/api/v1/accounts/{account}/conversations/{conversation}/messages"
+    headers = {"Content-Type": "application/json",
+               "Accept": "application/json",
+               "api_access_token": f"{chatwoot_bot_token}"}
 
-    # Prepare the payload
-    payload = {
-        'content': bot_response,
-        'message_type': 'outgoing'  # Send the message as an outgoing message from the bot
-    }
-
-    # Send the bot's response back to the user in Chatwoot
-    chatwoot_reply_url = f'https://app.chatwoot.com/api/v1/conversations/{conversation_id}/messages'
-    response = requests.post(chatwoot_reply_url, json=payload, headers=headers)
+    r = requests.post(url,
+                      json=data, headers=headers)
         
     
 
