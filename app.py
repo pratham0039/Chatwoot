@@ -109,13 +109,11 @@ def check_links(links, user_query):
     return web_links, youtube_links
 
 
-# OpenAI API Key
-openai.api_key = 'your-openai-api-key'
 
 # Chatwoot API Key
 chatwoot_api_key = 'fw2s9VCfe7Rik8d84wsP2YDo'
 chatwoot_url = "https://app.chatwoot.com"
-chatwoot_bot_token = "CHHUUQQ4smRuYm6BvQuAnDt1"
+chatwoot_bot_token = "fw2s9VCfe7Rik8d84wsP2YDo"
 
 @app.route('/chatwoot-webhook', methods=['POST'])
 def handle_webhook():
