@@ -24,10 +24,13 @@ def handle_webhook():
     message_type = data['message_type']
     print(account)
     print('ptatham')
-    team_exists = 'team' in data['conversation']['meta'] and 'name' in data['conversation']['meta']['team']
-    team_name = data['conversation']['meta']['team']['name'] if team_exists else 'No team assigned'
-    print(team_name)
-
+    team_name = ""
+    try:
+        team_exists = 'team' in data['conversation']['meta'] and 'name' in data['conversation']['meta']['team']
+        team_name = data['conversation']['meta']['team']['name'] if team_exists else 'No team assigned'
+        print(team_name)
+    except:
+        continue
 
     # Instead of calling OpenAI, return a fixed response
     bot_response = "Lxme trading is a trading platfrom which have multiple things for a women. They can use it any way they want to."
