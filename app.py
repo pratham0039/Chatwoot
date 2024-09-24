@@ -31,7 +31,7 @@ def handle_webhook():
         team_name = data['conversation']['meta']['team']['name'] if team_exists else 'No team assigned'
         print(team_name)
     except:
-        print(f"KeyError encountered: {e}")
+        
         team_name = 'No team assigned'
 
     # Instead of calling OpenAI, return a fixed response
