@@ -31,7 +31,8 @@ def handle_webhook():
         team_name = data['conversation']['meta']['team']['name'] if team_exists else 'No team assigned'
         print(team_name)
     except:
-        continue
+        print(f"KeyError encountered: {e}")
+        team_name = 'No team assigned'
 
     # Instead of calling OpenAI, return a fixed response
     bot_response = "Lxme trading is a trading platfrom which have multiple things for a women. They can use it any way they want to."
