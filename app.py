@@ -26,7 +26,8 @@ def handle_webhook():
     print('ptatham')
     team_name = ""
     try:
-        team_exists = 'team' in data['conversation']['meta'] and 'name' in data['conversation']['meta']['team']
+        team_exists = 'team' in data['conversation']['meta'] 
+        print(f'team: {team_exists}')
         team_name = data['conversation']['meta']['team']['name'] if team_exists else 'No team assigned'
         print(team_name)
     except:
