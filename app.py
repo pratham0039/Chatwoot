@@ -16,6 +16,7 @@ chatwoot_bot_token = "CHHUUQQ4smRuYm6BvQuAnDt1"
 def handle_webhook():
     # Get the webhook data from Chatwoot
     data = request.json
+    print(data)
     user_message = data['content']  # User's message from Chatwoot
     conversation_id = data['conversation']['id']
     contact = data['sender']['id']
