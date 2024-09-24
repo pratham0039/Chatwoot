@@ -2,3 +2,6 @@ Flask
 Gunicorn
 openai
 requests
+crewai
+crewai[tools]
+pysqlite3-binary
