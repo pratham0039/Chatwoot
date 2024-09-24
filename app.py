@@ -24,17 +24,21 @@ def handle_webhook():
     message_type = data['message_type']
     print(account)
     print('ptatham')
+    team_exists = 'team' in data['conversation']['meta'] and 'name' in data['conversation']['meta']['team']
+    team_name = data['conversation']['meta']['team']['name'] if team_exists else 'No team assigned'
+
 
     # Instead of calling OpenAI, return a fixed response
     bot_response = "Lxme trading is a trading platfrom which have multiple things for a women. They can use it any way they want to."
     chatwoot_msg = 'None'
     # Send the fixed bot response back to Chatwoot
     if message_type == 'incoming':
-        if user_message == "talk":
-            print('talk')
-            chatwoot_msg = send_message_to_team(account, conversation_id, bot_response)
-        else:
-            chatwoot_msg = send_message_to_chatwoot(account, conversation_id, bot_response)
+        if team_name != "sales":
+            if user_message == "talk":
+                print('talk')
+                chatwoot_msg = send_message_to_team(account, conversation_id, bot_response)
+            else:
+                chatwoot_msg = send_message_to_chatwoot(account, conversation_id, bot_response)
 
     return chatwoot_msg
 
